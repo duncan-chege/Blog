@@ -1,8 +1,9 @@
 from flask import render_template,redirect,url_for,flash,request
 from ..models import Writer
 from .forms import LoginForm
-from flask_login import login_user
+from flask_login import login_user,login_required
 from .. import db
+from . import auth
 
 
 @auth.route('/login',methods=['GET','POST'])
@@ -25,4 +26,3 @@ def logout():
     logout_user()
     return redirect(url_for("main.index"))
 
-    

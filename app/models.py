@@ -41,9 +41,6 @@ class Writer(db.Model):
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
     
-    def __repr__(self):
-        return f'User {self.name}'
-        
 
 
 

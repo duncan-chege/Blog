@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+<!-- Content block -->
+{% block content %}
+
+<div class="container space">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title"> Techie Talk </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text"> A blog by @dunyung1 bringing you the latest trends in technology </p>
+
+            {% if current_user.is_authenticated %}
+            <p><button class="button buttonx ">Get a Quote</button></p>
+            <p><button class="button buttonx ">View Blog</button></p>
+            {% else %}
+            <p><a href="{{url_for('auth.login')}}"> <button class="button button1 ">Sign In</button></a></p>
+            <p><button class="button button2 ">Get a Quote</button></p>
+            <p><button class="button buttonx ">View Blog</button></p>
+            {%endif%}
+        </div>
+    </div>
+</div>
+
+{% endblock%}
