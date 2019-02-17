@@ -1,5 +1,5 @@
 import urllib.request,json
-from .models import Quote
+from . models import Quote
 
 # Getting the quote base url
 base_url = None
@@ -28,7 +28,7 @@ def get_quotes():
 
 def process_results(quote_list):
 
-        '''
+    '''
     Function  that processes the quote result and transform them to a list of Objects
 
     Args:
@@ -46,5 +46,6 @@ def process_results(quote_list):
         quote_object = Quote(author,quote)
         quote_results.append(quote_object)
 
+    return quote_results
 
  
