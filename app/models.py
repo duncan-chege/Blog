@@ -19,7 +19,7 @@ class User(db.Model):
     def __repr__(self):     #makes it easier to debug our applications.
         return f'User {self.username}'
 
-class Writer(db.Model):
+class Writer(UserMixin,db.Model):
     __tablename__ = 'writer'
 
     id = db.Column(db.Integer,primary_key = True)
@@ -41,6 +41,15 @@ class Writer(db.Model):
     def verify_password(self,password):
         return check_password_hash(self.password_hash,password)
     
+class Quote:
+    '''
+    Quote class to define quote objects
+    '''
+    def __init__(self,author,quote):
+        self.theauthor = author
+        self.thequote = quote
+        
+
 
 
 
