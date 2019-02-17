@@ -7,7 +7,7 @@ class WriterModelTest(unittest.TestCase):
         self.new_writer = Writer(password = 'banana')
 
     def test_password_setter(self):
-        self.assertTrue(self.new_writer.pass_secure is not None)
+        self.assertTrue(self.new_writer.password_hash is not None)
 
     def test_no_access_password(self):
         with self.assertRaises(AttributeError):
