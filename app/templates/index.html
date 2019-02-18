@@ -18,10 +18,10 @@
             <p class="text"> A blog by @dunyung1 bringing you the latest trends in technology </p>
 
             {% if current_user.is_authenticated %}
-            <p><button class="button buttonx ">View Blogs</button></p>
+            <p><a href="{{url_for('main.blogs')}}"><button class="button buttonx ">View Blogs</button></p>
             {% else %}
-            <p><a href="{{url_for('auth.login')}}"> <button class="button button1 ">Sign In</button></a></p>            
-            <p><button class="button buttonx ">View Blogs</button></p>
+            <p><a href="{{url_for('auth.login')}}"><button class="button button1 ">Sign In</button></a></p>            
+            <p><a href="{{url_for('main.blogs')}}"><button class="button buttonx ">View Blogs</button></p>
             
             {%endif%}
         </div>

@@ -61,3 +61,7 @@ class Blog(db.Model):
     def get_blogs(cls,id):
         blogs = Blog.query.filter_by(blog_id=id).all()
         return blogs
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id 
