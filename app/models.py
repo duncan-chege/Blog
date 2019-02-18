@@ -26,7 +26,8 @@ class Writer(UserMixin,db.Model):
     name = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
     password_hash = db.Column(db.String(255))
-
+    profile_pic_path = db.Column(db.String())
+   
     users = db.relationship('User',backref = 'writer',lazy="dynamic")     #db.relationship to create a virtual column that will connect with the foreign key
 
     @property

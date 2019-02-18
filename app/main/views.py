@@ -2,6 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from flask_login import login_required
 from .. request import get_quotes
 from . import main
+from ..models import Writer
 
 # Views
 @main.route('/')
@@ -17,3 +18,11 @@ def index():
 
     return render_template('index.html',quote = quote, quote_author =  quote_author)
 
+@main.route('/user/<wname>')
+def profile(wname):
+    writer = Writer.query.filter_by(name = wname).first()
+
+    if writer is None:
+        abort(404)
+
+    return render_template("profile/profile.html", writer = writer)
