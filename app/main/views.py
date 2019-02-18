@@ -18,9 +18,9 @@ def index():
 
     return render_template('index.html',quote = quote, quote_author =  quote_author)
 
-@main.route('/user/<wname>')
-def profile(wname):
-    writer = Writer.query.filter_by(name = wname).first()
+@main.route('/user/<w_id>')
+def profile(w_id):
+    writer = Writer.query.filter_by(id = w_id).first()
 
     if writer is None:
         abort(404)

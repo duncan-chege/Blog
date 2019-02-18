@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+<!-- Styles block -->
+{% block styles %}
+
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/profile.css')}}">
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+
+        <!-- displaying name-->
+        <div class="col-md-4">
+            <h1> Writer Profile </h1>
+            <h3> {{writer.name| capitalize}} </h3>
+            <p> {{writer.email}} </p>
+            <!--displaying photo-->
+            <div class="col-md-4">
+                <div class="profilepic">
+                    <img src="{{url_for('static',filename='default.jpeg')}}" alt="profilepic" class="img-thumbnail imgsize">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <!--displaying blog creation-->
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

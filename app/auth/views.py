@@ -13,7 +13,7 @@ def login():
         writer = Writer.query.filter_by(email = login_form.email.data).first()
         if writer is not None and writer.verify_password(login_form.password.data):
             login_user(writer,login_form.remember.data)
-            return redirect(request.args.get('next') or url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('main.profile', w_id = writer.id))
 
         flash('Invalid name or password')
 
@@ -27,4 +27,3 @@ def logout():
 
     flash('You have been logged out.')
     return redirect(url_for("main.index"))      #redirect url for the main index function
-
