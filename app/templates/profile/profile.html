@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
 
 <!-- Styles block -->
 {% block styles %}
@@ -26,8 +27,10 @@
         </div>
 
         <div class="col-md-7">
-            <!--displaying blog creation-->
+            <!--display blog creation-->
 
+            <h1> Enter your blog </h1>
+            {{ wtf.quick_form(blog_form) }}
         </div>
 
     </div>

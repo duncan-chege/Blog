@@ -51,6 +51,16 @@ class Blog(db.Model):
 
     writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))        #one writer is shared by many blogs
 
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
 
+    @classmethod
+    def get_blogs(cls,id):
+        blogs = Blog.query.filter_by(blog_id=id).all()
+        return blogs
+
+
+  
 
 

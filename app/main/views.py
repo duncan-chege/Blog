@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from flask_login import login_required
 from .. request import get_quotes
 from . import main
-from ..models import Writer
+from ..models import Writer,Blog
 from .forms import BlogForm
 
 # Views
@@ -26,13 +26,18 @@ def profile(w_id):
     if writer is None:
         abort(404)
 
-    # bform = BlogForm()
-    # if bform.validate_on_submit():
-    #     title = bform.title.data
-    #     pitch = bform.pitch.data
+    bform = BlogForm()
+    if bform.validate_on_submit():
+        title = bform.title.data
+        blog = bform.blog.data
 
-    #     new_blog = 
+        new_blog = Blog(mytitle = title, myblog = blog, writer_id = writer.id)
 
+        #update the blog
+        new_blog.save_blog()
 
+        # return redirect(url_for('main.blogs', writer.id = w_id))
 
-    return render_template("profile/profile.html", writer = writer)
+    return render_template("profile/profile.html", writer = writer, blog_form = bform)
+
+    
