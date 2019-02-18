@@ -42,6 +42,6 @@ def profile(w_id):
 
 @main.route('/blogs', methods = ['GET','POST'])
 def blogs():
-    blogs = Blog.query.all()
+    blogs = Blog.query.order_by(Blog.timestamp.desc()).all()
 
     return render_template('blogs.html', blogs = blogs)

@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(writer_id):
@@ -48,6 +49,7 @@ class Blog(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(255))
     blog = db.Column(db.String(500))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))        #one writer is shared by many blogs
 
@@ -59,8 +61,3 @@ class Blog(db.Model):
     def get_blogs(cls,id):
         blogs = Blog.query.filter_by(blog_id=id).all()
         return blogs
-
-
-  
-
-

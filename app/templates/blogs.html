@@ -4,10 +4,12 @@
 <div class="container">
     <div class="row">
 
+
             {% for blog in blogs %}
   
             <h2> {{blog.title}} </h2>
             <p>  {{blog.blog}} </p>
+            <p> Posted {{ moment(blog.timestamp).fromNow() }} </p>
             <hr>
   
             {% endfor %}

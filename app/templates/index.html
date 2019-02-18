@@ -12,17 +12,16 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h5> {{quote}} </h5>
-            </p> {{ quote_author }} </p>
+            <h4> {{quote}} </h4>
+            </p><b> {{ quote_author }} </b></p>
 
             <p class="text"> A blog by @dunyung1 bringing you the latest trends in technology </p>
 
             {% if current_user.is_authenticated %}
-            <p><button class="button buttonx ">View Blog</button></p>
+            <p><button class="button buttonx ">View Blogs</button></p>
             {% else %}
-
             <p><a href="{{url_for('auth.login')}}"> <button class="button button1 ">Sign In</button></a></p>            
-            <p><button class="button buttonx ">View Blog</button></p>
+            <p><button class="button buttonx ">View Blogs</button></p>
             
             {%endif%}
         </div>
