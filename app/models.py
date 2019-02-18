@@ -47,7 +47,7 @@ class Blog(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(255))
-    blog = db.Column(db.String(255))
+    blog = db.Column(db.String(500))
 
     writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))        #one writer is shared by many blogs
 

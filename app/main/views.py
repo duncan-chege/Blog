@@ -19,7 +19,7 @@ def index():
 
     return render_template('index.html',quote = quote, quote_author =  quote_author)
 
-@main.route('/user/<w_id>')
+@main.route('/user/<w_id>',methods = ['GET','POST'])
 def profile(w_id):
     writer = Writer.query.filter_by(id = w_id).first()
 
@@ -28,16 +28,20 @@ def profile(w_id):
 
     bform = BlogForm()
     if bform.validate_on_submit():
-        title = bform.title.data
-        blog = bform.blog.data
+        newtitle = bform.title.data
+        newblog = bform.blog.data
 
-        new_blog = Blog(mytitle = title, myblog = blog, writer_id = writer.id)
+        new_blog = Blog(title = newtitle, blog = newblog, writer_id = writer.id)
 
         #update the blog
         new_blog.save_blog()
 
-        # return redirect(url_for('main.blogs', writer.id = w_id))
+        return redirect(url_for('main.blogs'))
 
     return render_template("profile/profile.html", writer = writer, blog_form = bform)
 
-    
+@main.route('/blogs', methods = ['GET','POST'])
+def blogs():
+    blogs = Blog.query.all()
+
+    return render_template('blogs.html', blogs = blogs)
