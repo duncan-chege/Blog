@@ -1,7 +1,7 @@
 from flask import render_template,redirect,url_for,flash,request
 from ..models import Writer
 from .forms import LoginForm
-from flask_login import login_user,login_required
+from flask_login import login_user,login_required,logout_user
 from .. import db
 from . import auth
 

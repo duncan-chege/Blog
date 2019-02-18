@@ -10,11 +10,10 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    return render_template('index.html')
+    myquote = get_quotes()
 
-@main.route('/quotes/')
-def quote():
-    quote = get_quotes()
-    title = 'Random Quotes'
-    return render_template('quotes.html', title = title, quote = quote)
+    quote = myquote['quote']
+    quote_author = myquote['author']
+
+    return render_template('index.html',quote = quote, quote_author =  quote_author)
 
