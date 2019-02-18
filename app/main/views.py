@@ -3,6 +3,7 @@ from flask_login import login_required
 from .. request import get_quotes
 from . import main
 from ..models import Writer
+from .forms import BlogForm
 
 # Views
 @main.route('/')
@@ -24,5 +25,14 @@ def profile(w_id):
 
     if writer is None:
         abort(404)
+
+    bform = BlogForm()
+    if bform.validate_on_submit():
+        title = bform.title.data
+        pitch = bform.pitch.data
+
+        new_blog = 
+
+
 
     return render_template("profile/profile.html", writer = writer)
