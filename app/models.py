@@ -28,6 +28,7 @@ class Writer(UserMixin,db.Model):
     password_hash = db.Column(db.String(255))
 
     users = db.relationship('User',backref = 'writer',lazy="dynamic")     #db.relationship to create a virtual column that will connect with the foreign key
+    blogs = db.relationship('Blog',backref = 'writer',lazy="dynamic")
 
     @property
     def password(self):
@@ -41,4 +42,15 @@ class Writer(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.password_hash,password)
     
-    
+class Blog(db.Model):
+    __tablename__ = 'blogs'
+
+    id = db.Column(db.Integer,primary_key = True)
+    title = db.Column(db.String(255))
+    blog = db.Column(db.String(255))
+
+    writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))        #one writer is shared by many blogs
+
+
+
+

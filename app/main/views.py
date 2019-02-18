@@ -26,12 +26,12 @@ def profile(w_id):
     if writer is None:
         abort(404)
 
-    bform = BlogForm()
-    if bform.validate_on_submit():
-        title = bform.title.data
-        pitch = bform.pitch.data
+    # bform = BlogForm()
+    # if bform.validate_on_submit():
+    #     title = bform.title.data
+    #     pitch = bform.pitch.data
 
-        new_blog = 
+    #     new_blog = 
 
 
 
