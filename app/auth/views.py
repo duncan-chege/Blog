@@ -32,7 +32,7 @@ def logout():
 def register():
     rform = RegistrationForm()
     if rform.validate_on_submit():
-        writer = Writer(email = rform.email.data, name = rform.name.data, password_hash = rform.password.data)
+        writer = Writer(email = rform.email.data, name = rform.name.data, password = rform.password.data)
         db.session.add(writer)
         db.session.commit()
         return redirect(url_for('auth.login'))
