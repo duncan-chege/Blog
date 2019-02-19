@@ -28,7 +28,7 @@ class Writer(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
-    password_hash = db.Column(db.String(255))
+    pass_secure = db.Column(db.String(255))
 
     users = db.relationship('User',backref = 'writer',lazy="dynamic")     #db.relationship to create a virtual column that will connect with the foreign key
     blogs = db.relationship('Blog',backref = 'writer',lazy="dynamic")
@@ -39,11 +39,11 @@ class Writer(UserMixin,db.Model):
 
     @password.setter
     def password(self, password):
-            self.password_hash = generate_password_hash(password)
+        self.pass_secure = generate_password_hash(password)
 
 
     def verify_password(self,password):
-        return check_password_hash(self.password_hash,password)
+        return check_password_hash(self.pass_secure,password)
     
 class Blog(db.Model):
     __tablename__ = 'blogs'
@@ -78,14 +78,6 @@ class Comment(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
-
-    # @classmethod
-    # def get_comments(cls,pitch):
-    #     comments = Comment.query.filter_by(blog_id = blog).all()
-    #     return comments
-
-    # def __repr__(self):
-    #     return f'Comment{self.comment}'
 
 
 
