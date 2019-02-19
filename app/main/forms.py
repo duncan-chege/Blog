@@ -8,6 +8,7 @@ class BlogForm(FlaskForm):
     submit = SubmitField('Post')
 
 class CommentForm(FlaskForm):
-    body = StringField('', validators=[InputRequired()])
-    submit = SubmitField('Submit')
+    name = StringField('', validators=[InputRequired()], render_kw={"placeholder": "Enter your name"})
+    comment = StringField('', validators=[InputRequired()], render_kw={"placeholder": "Post your comment"})
+    submit = SubmitField('Post')
 

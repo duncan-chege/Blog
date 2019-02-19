@@ -55,7 +55,7 @@ class Blog(db.Model):
 
     writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))        #one writer is shared by many blogs
    
-    comments = db.relationship('Comment', backref='blog', lazy='dynamic')       #creating a virtual column to connect with the foreign key
+    comments = db.relationship('Comment', backref='blog', lazy='dynamic')       #creating a virtual column to connect with the foreign key. It will help in displaying comments per blog
 
     def save_blog(self):
         db.session.add(self)
@@ -69,8 +69,26 @@ class Blog(db.Model):
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.Text)
+    name = db.Column(db.String(255))
+    comment = db.Column(db.String(255))
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))      #one user has many comments
-    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))      #one blog has many commens
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))      #one blog has many comments
+    
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    # @classmethod
+    # def get_comments(cls,pitch):
+    #     comments = Comment.query.filter_by(blog_id = blog).all()
+    #     return comments
+
+    # def __repr__(self):
+    #     return f'Comment{self.comment}'
+
+
+
+
+
 

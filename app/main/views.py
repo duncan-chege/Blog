@@ -1,5 +1,5 @@
 from flask import render_template,request,redirect,url_for,abort,flash,session
-from flask_login import login_required,current_user
+from flask_login import login_required
 from .. request import get_quotes
 from . import main
 from ..models import Writer,Blog,Comment
@@ -53,10 +53,15 @@ def oneblog(b_id):
 
     cform = CommentForm()
     if cform.validate_on_submit():
-        comment = Comment(body=cform.body.data, blog=blog, b_id=current_user._get_current_object())
-        db.session.add(comment)
-        flash('Your comment has been published.')
-        return redirect(url_for('.oneblog', id=blog.id ))
+        newname = cform.name.data
+        newcomment = cform.comment.data
+
+        new_comment = Comment(name = newname, comment = newcomment, blog_id = b_id)
+
+        new_comment.save_comment()
+        # comments = Comment.query.filter_by(blog_id = b_id).all()
+
+        return redirect(url_for('main.oneblog', b_id = blog.id ))
 
     return render_template('oneblog.html', blog = blog, comment_form = cform)
 
