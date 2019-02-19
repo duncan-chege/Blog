@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+
+{% endblock %}
+
 <!-- Content block -->
 {% block content %}
 
@@ -7,22 +14,22 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="title"> Techie Talk </h1>
+            <p class="title"> A blog by @dunyung1 bringing you the latest trends in technology </p>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <h4> {{quote}} </h4>
-            </p><b> {{ quote_author }} </b></p>
-
-            <p class="text"> A blog by @dunyung1 bringing you the latest trends in technology </p>
+            <h4> <i>{{quote}}</i> </h4>
+            <p><b> ~ {{ quote_author }} </b></p>
 
             {% if current_user.is_authenticated %}
-            <p><a href="{{url_for('main.blogs')}}"><button class="button buttonx ">View Blogs</button></p>
+            <p><a href="{{url_for('main.blogs')}}"><button class="button bview">View Blogs</button></p>
             {% else %}
-            <p><a href="{{url_for('auth.login')}}"><button class="button button1 ">Sign In</button></a></p>            
-            <p><a href="{{url_for('main.blogs')}}"><button class="button buttonx ">View Blogs</button></p>
-            
+            <div class="top">
+                <a href="{{url_for('auth.login')}}"><button class="button bsign">Writer Sign In</button>
+                <a href="{{url_for('main.blogs')}}"><button class="button bview">View Blogs</button>
+            </div>
             {%endif%}
         </div>
     </div>

@@ -1,0 +1,12 @@
+/* .blog{
+    display: inline-block;
+}
+.link{
+    display: inline-block;
+} */
+.spacing{
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}

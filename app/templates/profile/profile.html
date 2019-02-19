@@ -15,21 +15,23 @@
 
         <!-- displaying name-->
         <div class="col-md-4">
-            <h1> Writer Profile </h1>
-            <h3> {{writer.name| capitalize}} </h3>
-            <p> {{writer.email}} </p>
+            <h1 class="proftitle"> Writer Profile </h1>
+           
             <!--displaying photo-->
             <div class="col-md-4">
                 <div class="profilepic">
                     <img src="{{url_for('static',filename='default.jpeg')}}" alt="profilepic" class="img-thumbnail imgsize">
                 </div>
+                <h3 class="name"> <b>{{writer.name| capitalize}}</b></h3>
+                <p class="email"> {{writer.email}} </p>
             </div>
         </div>
 
         <div class="col-md-7">
             <!--display blog creation-->
 
-            <h1> Enter your blog </h1>
+            <h1 class="blogtitle"> Enter your blog </h1>
+         
             {{ wtf.quick_form(blog_form) }}
         </div>
 

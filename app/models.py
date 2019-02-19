@@ -16,7 +16,8 @@ class User(db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
 
     writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))       #one writer is shared by many users
-    comments = db.relationship('Comment', backref='author', lazy='dynamic')
+    
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     def __repr__(self):     #makes it easier to debug our applications.
         return f'User {self.username}'
@@ -53,7 +54,8 @@ class Blog(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))        #one writer is shared by many blogs
-    comments = db.relationship('Comment', backref='author', lazy='dynamic')
+   
+    comments = db.relationship('Comment', backref='blog', lazy='dynamic')       #creating a virtual column to connect with the foreign key
 
     def save_blog(self):
         db.session.add(self)
@@ -69,6 +71,6 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text)
 
-    writer_id = db.Column(db.Integer, db.ForeignKey('writer.id'))
-    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))      #one user has many comments
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))      #one blog has many commens
 
