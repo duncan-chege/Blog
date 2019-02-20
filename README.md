@@ -10,8 +10,12 @@ Written by *Duncan Chege*. My first attempt at interating psql into my flask app
 1. Clone the repository
 2. Create a virtual environment and install flask in your repository folder 
 3. Run the IP address on the browser
-4. First, create a new writer account using this link to maneuver through the application:                                                https://thelastblog.herokuapp.com/authenticate/register
-This will prevent anyone from becoming a writer as only a specified number of writers can post blogs on the application
+
+## Site manuevering.
+1. Click the link on my github description to manuever through the site as a user
+2. Create a new writer account using this link to maneuver through the application as a writer:                                                https://thelastblog.herokuapp.com/authenticate/register
+This will ensure only authorized writers can post blogs on the application
+
 
 ## Behaviour Driven Development
 
